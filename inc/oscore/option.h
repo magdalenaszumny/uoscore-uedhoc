@@ -43,6 +43,7 @@ enum o_num {
 	PROXY_SCHEME = 39,
 	SIZE1 = 60,
 	ECHO = 252,
+	NO_RESPONSE = 258,
 };
 
 enum option_class {

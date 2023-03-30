@@ -154,10 +154,12 @@ options_reorder(struct o_coap_option *U_options, uint8_t U_options_cnt,
 	*out_options_cnt = 0;
 	memset(out_options, 0, sizeof(struct o_coap_option) * max_coap_opt_cnt);
 
-	/*Get the all outer options. Discard OSCORE and outer OBSERVE as specified in 8.2 and 8.4 */
+	/* Get the all outer options. Discard OSCORE and outer OBSERVE as specified in 8.2 and 8.4.
+	 * Discard outer No-Response as specified in 4.1.3.6. */
 	for (uint8_t i = 0; i < U_options_cnt; i++) {
 		if ((U_options[i].option_number != OSCORE) &&
-		    (U_options[i].option_number != OBSERVE)) {
+		    (U_options[i].option_number != OBSERVE) &&
+		    (U_options[i].option_number != NO_RESPONSE)) {
 			out_options[*out_options_cnt] = U_options[i];
 			*out_options_cnt += 1;
 		}
